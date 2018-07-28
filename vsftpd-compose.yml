@@ -1,0 +1,24 @@
+version: "3.6"
+services:
+  #container_name: vsftpd
+  vsftpd:
+    image: vsftpd:3.0
+    environment:
+      - FTP_USER=user
+      - FTP_PASS=pass
+      - PASV_ADDRESS=192.168.1.253
+      - PASV_MIN_PORT=21110
+      - PASV_MAX_PORT=21116
+      - VSFTPD_CONF=vsftpd_log_file=/tmp/vsftpd.log\ndual_log_enable=YES
+      #- LOG_STDOUT=yes
+    network_mode: bridge
+    volumes:
+      - /opt/ftp:/home/vsftpd
+    ports:
+      - "20:20"
+      - "21:21"
+      - "21110-21116:21110-21116"
+    dns:
+      - 114.114.114.114
+    restart: always
+    stop_grace_period: 30s
