@@ -17,6 +17,8 @@ ENV PASV_ADDRESS **IPv4**
 ENV PASV_MIN_PORT 21100
 ENV PASV_MAX_PORT 21110
 ENV LOG_STDOUT **Boolean**
+ENV VSFTPD_CONF none
+
 
 COPY vsftpd.conf /etc/vsftpd/
 COPY vsftpd_virtual /etc/pam.d/
